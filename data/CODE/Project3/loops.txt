@@ -1,0 +1,67 @@
+## Assignment: Project Three - Loops
+## Author: Howard Bates (hbates@northmen.org)
+## Version: 02.14.2013.01
+## Purpose: Loops example
+
+use 5.14.2;
+use warnings;
+
+my $continueInt;
+
+sub main {
+	setContinueInt();
+	use constant YES => 1;
+	while ($continueInt == YES) {
+		guessNum();
+		countdown();
+		setContinueInt();
+	}
+}
+
+main();
+
+sub setContinueInt {
+     if (defined $continueInt) {
+          print "Do you want to continue (0=no, 1=yes)? ";
+          chomp ($continueInt = <STDIN>);
+     } else {
+          $continueInt = 1;
+     }
+}
+
+sub guessNum {
+	use constant ANSWER => 2;
+	my $guess = 0;
+	while ($guess != ANSWER) {
+		print "Please guess a number between 1 - 10: ";
+		chomp ($guess = <STDIN>);
+		if ($guess > ANSWER) {
+			print "Too high.\n";
+		} elsif ($guess < ANSWER) {
+			print "Too low.\n";
+		}
+	}
+	print "\nCorrect guess!\n";
+}
+
+sub countdown {
+	use constant LIMIT => 10;
+	for (my $i = 0; $i < LIMIT; $i++) {
+		print "\n\tCOUNTDOWN: T-MINUS $i\n";
+		sleep 1;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

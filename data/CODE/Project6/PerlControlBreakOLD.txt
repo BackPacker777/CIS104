@@ -1,0 +1,73 @@
+## Assignment: Control Break
+## Version: 12.01.2011.01
+## Author: Howard Bates (hbates@northmen.org)
+## Purpose: To demonstrate control break
+
+use 5.14.2;  ## Automatically enables 'use strict'
+use warnings;
+
+my (@policyType, @fullName);
+my @value;
+use constant DATA_SUMMARY_FILE => "./dataSummary.txt";
+
+sub main {
+	if (!(@ARGV && (-e $ARGV[0]))) {
+		die "You must supply the correct data file for procesing as an argument!\n";
+	}
+	readDataFile();
+	processReport();
+}
+
+main();
+
+sub readDataFile {
+	my @workingArray;
+	my @idNum;
+	my $dataFile = $ARGV[0];
+	my $IN;
+	open ($IN, "<", $dataFile);
+	while (<$IN>) {
+		@workingArray = split(/,/);
+		foreach $_ (@workingArray) {
+			chomp;
+			push (@idNum, $workingArray[0]), shift (@workingArray);
+			push (@fullName, $workingArray[0]), shift (@workingArray);
+			push (@value, $workingArray[0]), shift (@workingArray);
+			push (@policyType, $workingArray[0]), shift (@workingArray);
+		}
+	}
+	close ($IN);
+	chomp (@policyType);
+}
+
+sub processReport {
+	my $legacyPolicyType = $policyType[0];
+	my $policyTypeValue = 0;
+	my $HEADER =    "\n        Value by Policy Type\n";
+	my $SEPERATOR = "==========================================\n\n";
+	my $arrayLength = @policyType;
+	my $OUT;
+	open ($OUT, ">>", DATA_SUMMARY_FILE);
+	print ($OUT $HEADER);
+	print ($OUT $SEPERATOR);
+	for (my $i = 0; $i < $arrayLength; $i++) {
+		if ($legacyPolicyType ne $policyType[$i]) {
+			&printSummary($policyTypeValue, $legacyPolicyType);
+			$policyTypeValue = 0;
+		}
+		print ($OUT "$fullName[$i], $value[$i]", "\n");
+		$policyTypeValue = ($policyTypeValue + $value[$i]);
+		$legacyPolicyType = $policyType[$i];
+	}
+	&printSummary($policyTypeValue, $legacyPolicyType);
+	close ($OUT);
+}
+
+sub printSummary {
+	my $OUT;
+	my $policyTypeValueX = $_[0];
+	my $legacyPolicyTypeX = $_[1];
+	open ($OUT, ">>", DATA_SUMMARY_FILE);
+	print ($OUT "\nTotal value for $legacyPolicyTypeX is $policyTypeValueX\n");
+	print ($OUT "_________________________________________\n\n");
+}

@@ -1,0 +1,75 @@
+## Assignment: Project Two
+## Author: 
+## Version: 
+## Purpose: 
+
+use warnings;
+use 5.16.1;
+
+my ($sitting, $counter, $bigStep);
+use constant BIG_STEPS => 20;
+use constant TRUE => 1;
+
+sub main {
+     setCounter();
+     if (!(defined $sitting)) {
+          setSitting();
+     }
+     if ($sitting == TRUE) {
+          standRobot();
+     }
+     if ($counter < BIG_STEPS) {
+          setBigStep();
+          takeStep();
+     }
+     turnRobotLeft();
+     takeStep();
+     turnRobotRight();
+     takeStep();
+     ##Keep going with recursive method calls.....
+}
+
+main();
+     
+sub setCounter {
+     if (!(defined $counter) || $counter == BIG_STEPS) {
+          $counter = 0;
+     } else {
+          $counter++;
+     }
+}
+
+sub setSitting {
+     print "\n\nIs the robot sitting down? (0=no, 1=yes) ";
+     chomp ($sitting = <STDIN>);
+}
+
+sub standRobot {
+     print "\nCommand robot to stand up\n";
+     $sitting = 0;
+}
+
+sub setBigStep {
+     $bigStep = TRUE;
+}
+
+sub takeStep {
+     if ($bigStep == TRUE) {
+          if ($counter < BIG_STEPS) {
+               print "Robot takes one step\n";
+               setCounter();
+               takeStep();
+          }
+          $bigStep = 0;
+     } else {
+          print "Robot takes one step\n";
+     }
+}
+
+sub turnRobotLeft {
+     print "Robot turns 90 degrees to the left\n";
+}
+
+sub turnRobotRight {
+     print "Robot turns 90 degrees to the right\n";
+}

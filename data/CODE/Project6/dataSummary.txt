@@ -1,0 +1,25 @@
+
+Total value for 1 is 38000
+_________________________________________
+
+
+Total value for 2 is 18000
+_________________________________________
+
+
+Total value for 3 is 1500
+_________________________________________
+
+
+        Value by Policy Type
+==========================================
+
+Howard Bates, 10000
+John Smith, 20000
+Everett Jones, 8000
+John Smith, 5000
+Howard Bates, 5000
+Everett Jones, 8000
+Everett Jones, 500
+Howard Bates, 500
+John Smith, 500

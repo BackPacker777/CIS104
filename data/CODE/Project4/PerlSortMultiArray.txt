@@ -1,0 +1,158 @@
+## Assignment: Project Four - Multi-dimensional arrays & sorting
+## Author: Howard Bates (hbates@northmen.org)
+## Version: 02.28.2013.01
+## Purpose: Multi-dimensional array & sorting example
+
+use 5.14.2;
+use warnings;
+
+my (@arrayNumbers,@names);
+my ($numNumbers,$continue,$counter);
+use constant YES => 1;
+
+sub main {
+	setContinue();
+	setCounter();
+	while ($continue == YES) {
+		setNumNumbers();
+		populateArrayNumbers();
+		populateNames();
+		printNames();
+		#sortArrayBubble();    ## Choose one
+		#sortArrayInsertion(); ## Choose one
+		printArrayNumbers();
+		setContinue();
+	}
+}
+
+main();
+
+sub setCounter {
+	if (defined $counter) {
+		$counter++;
+	} else {
+		$counter = 0;
+	}
+}
+
+sub setContinue {
+     if (defined $continue) {
+		$continue = -1;
+		while ($continue !~ /[0-9]/ || $continue > 1 || $continue < 0) {
+			print "\n\nDo you want to continue (0=no, 1=yes)? ";
+			chomp ($continue = <STDIN>);
+			if ($continue !~ /[0-9]/ || $continue > 1 || $continue < 0) {
+				say "Incorrect input. Please try again";
+				sleep 1;
+				system ("cls");
+			}
+		}
+     } else {
+          $continue = 1;
+     }
+}
+
+sub setNumNumbers {
+	use constant MAX_NUM => 10;
+	$numNumbers = -1;
+	while ($numNumbers !~ /[0-9]/ || $numNumbers > MAX_NUM || $numNumbers < 0) {
+		print "\n\nHow many numbers are you entering (no more than ten)? ";
+		chomp ($numNumbers = <STDIN>);
+		if ($numNumbers !~ /[0-9]/ || $numNumbers > MAX_NUM || $numNumbers < 0) {
+			say "Incorrect input. Please try again";
+			sleep 1;
+			system ("cls");
+		}
+	}
+}
+
+sub populateArrayNumbers {
+	@arrayNumbers = ();
+	for (my $i = 0; $i < $numNumbers; $i++) {
+		while (!(defined $arrayNumbers[$i]) || $arrayNumbers[$i] !~ /[0-9]/) {
+			print "\nPlease enter a number: ";
+			chomp ($arrayNumbers[$i] = <STDIN>);
+			if ($arrayNumbers[$i] !~ /[0-9]/) {
+				say "Incorrect input. Please try again";
+				sleep 1;
+				system ("cls");
+			}
+		}
+	}
+}
+
+sub populateNames {
+	@names = ();
+	for (my $i = 0; $i < $numNumbers; $i++) {
+		$names[$i][0] = 0;
+		while ($names[$i][0] !~ /^[a-zA-Z]{2,20}$/) {
+			print "What is your first name? ";
+			chomp ($names[$i][0] = <STDIN>);
+			if ($names[$i][0] !~ /^[a-zA-Z]{2,20}$/) {
+				say "Incorrect input. Please try again";
+				sleep 1;
+				system ("cls");
+			}
+		}
+
+		$names[$i][1] = 0;
+		while ($names[$i][1] !~ /^[a-zA-Z]{2,20}$/) {
+			print "What is your last name? ";
+			chomp ($names[$i][1] = <STDIN>);
+			if ($names[$i][1] !~ /^[a-zA-Z]{2,20}$/) {
+				say "Incorrect input. Please try again";
+				sleep 1;
+				system ("cls");
+			}
+		}
+	}
+}
+
+sub printNames {
+	use constant COLUMNS => 2;
+	my $size = @names;
+	for (my $i = 0; $i < $size; $i++) {
+		print "\n";
+		for (my $j = 0; $j < COLUMNS; $j++) {
+			print "$names[$i][$j] ";
+		}
+		print "\n";
+	}
+}
+
+sub sortArrayBubble {
+	my $didSwap = 1;
+	my $temp = 0;
+	my $size = @arrayNumbers;
+	while ($didSwap == 1) {
+		$didSwap = 0;
+		for (my $i = 1; $i < $size; $i++) {
+			if ($arrayNumbers[$i - 1] > $arrayNumbers[$i]) {
+				$temp = $arrayNumbers[$i];
+				$arrayNumbers[$i] = $arrayNumbers[$i - 1];
+				$arrayNumbers[$i - 1] = $temp;
+				$didSwap = 1;
+			}
+		}
+	}
+}
+
+sub sortArrayInsertion {
+	my $size = @arrayNumbers;
+	my $temp = 0;
+	for (my $i = 1; $i < $size; $i++) {
+		my $j = $i;
+		while ($j > 0 && $arrayNumbers[$j] < $arrayNumbers[$j - 1]) {
+			$temp = $arrayNumbers[$j];
+			$arrayNumbers[$j] = $arrayNumbers[$j - 1];
+			$arrayNumbers[$j - 1] = $temp;
+			$j--;
+		}
+	}
+}
+
+sub printArrayNumbers {
+	foreach my $item (@arrayNumbers) {
+		print "$item\n";
+	}
+}

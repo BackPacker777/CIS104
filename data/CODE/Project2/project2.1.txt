@@ -1,0 +1,69 @@
+## Assignment: Project Two
+## Author: Howard Bates (hbates@northmen.org)
+## Version: 05.08.2012.01
+## Purpose: Selection example
+
+use 5.14.1;
+use warnings;
+
+my ($lastName, $firstName);
+my ($year, $age, $counter);
+
+sub main {
+    $counter = 0;
+    system("cls");
+    setLastName();
+    setFirstName();
+    determineAge();
+    printResults();
+}
+
+main();
+
+sub setLastName {
+    print "\n\nWhat is your last name? ";
+    chomp ($lastName = <STDIN>);
+}
+
+sub setFirstName {
+    print "What is your first name? ";
+    chomp ($firstName = <STDIN>);
+}
+
+sub determineAge {
+    use constant CURRENTYEAR => 2012;
+    my $year;
+    print "\n\nWhat year were you born? ";
+    chomp ($year = <STDIN>);
+    validateInput();
+    $age = CURRENTYEAR - $year;
+}
+
+sub printResults {
+    use constant OLDAGE => 60;
+    use constant YOUNGAGE => 10;
+    system("cls");
+    print "\n\nHello " . $firstName . " " . $lastName . ". You are " . $age . " years old.\n";
+    if ($age >= OLDAGE) {
+        print "\nYou are VERY old!\n";
+    } elsif ($age < YOUNGAGE) {
+        print "\nYou are VERY young!\n";
+    }
+}
+
+sub validateInput {
+    use constant MAXRECURSION => 5;
+    use constant MAXYEAR => 2007;
+    use constant MINYEAR => 1900;
+    if ($counter <= MAXRECURSION) {
+        if ($year < MINYEAR || $year > MAXYEAR) {
+            system("cls");
+            print "\n\nSORRY - INVALID YEAR SPECIFIED, TRY AGAIN.\n";
+            $counter = $counter + 1;
+            determineAge();
+        }
+    } else {
+        system("cls");
+        die "TOO MANY BAD ATTEMPTS, EXITING.\n";
+    }
+}

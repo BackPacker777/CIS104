@@ -1,0 +1,144 @@
+## Assignment: Control Break
+## Version: 12.01.2011.01
+## Author: Howard Bates (hbates@northmen.org)
+## Purpose: To demonstrate control break & File I/O
+
+use 5.14.2;
+use warnings;
+
+my @policyType;
+my @fullName;
+my @value;
+my $dataSummaryFile = "dataSummary.txt";
+
+sub main {
+	unless (@ARGV && (-e $ARGV[0])) {
+		die "You must supply the correct data file for procesing as an argument!\n";
+	}
+	readDataFile($ARGV[0]);
+	processReport();
+}
+
+main();
+
+sub readDataFile {
+	my @workingArray;
+	my @idNum;
+	my $IN;
+	my $dataFile = $_[0];
+	my $size;
+	open ($IN, '<', $dataFile);
+	while (<$IN>) {
+		@workingArray = split(/,/);
+		foreach $_ (@workingArray) {
+			chomp;
+			push (@idNum, $workingArray[0]), shift (@workingArray);
+			push (@fullName, $workingArray[0]), shift (@workingArray);
+			push (@value, $workingArray[0]), shift (@workingArray);
+			push (@policyType, $workingArray[0]), shift (@workingArray);
+		}
+	}
+	close $IN;
+	chomp (@policyType);
+}
+
+sub processReport {
+	my $OUT;
+	my $legacyPolicyType = $policyType[0];
+	my $policyTypeValue = 0;
+	my $HEADER =    "\n        Value by Policy Type\n";
+	my $SEPERATOR = "==========================================\n\n";
+	my $arrayLength = @policyType;
+	open ($OUT, ">>", $dataSummaryFile);
+	print ($OUT $HEADER);
+	print ($OUT $SEPERATOR);
+	for (my $i = 0; $i < $arrayLength; $i++) {
+		if ($legacyPolicyType ne $policyType[$i]) {
+			printSummary($policyTypeValue, $legacyPolicyType);
+			$policyTypeValue = 0;
+		}
+		print ($OUT "$fullName[$i], $value[$i]", "\n");
+		$policyTypeValue = ($policyTypeValue + $value[$i]);
+		$legacyPolicyType = $policyType[$i];
+	}
+	printSummary($policyTypeValue, $legacyPolicyType);
+	close $OUT;
+}
+
+sub printSummary {
+	my $OUT;
+	my $policyTypeValueX = $_[0];
+	my $legacyPolicyTypeX = $_[1];
+	open ($OUT, ">>", $dataSummaryFile);
+	print ($OUT "\nTotal value for $legacyPolicyTypeX is $policyTypeValueX\n");
+	print ($OUT "_________________________________________\n\n");
+}
+
+#################################################################################################
+#	Second File Below
+#################################################################################################
+
+## Assignment: Project Four - Multi-dimensional arrays & sorting
+## Author: Howard Bates (hbates@northmen.org)
+## Version: 02.28.2013.01
+## Purpose: Array & sorting example
+
+use 5.14.2;
+use warnings;
+no warnings 'uninitialized';
+
+my (@arrayNumbers,@names);
+my ($numNumbers,$continue,$counter);
+my $YES = 1;
+
+sub main {
+	$continue = $YES;
+	$counter = 0;
+	while ($continue == $YES) {
+		populateNames();
+		sortArrayNumbers();
+		printArrayNumbers();
+		printNames();
+		setContinue();
+	}
+}
+
+main();
+
+sub setContinue {
+	print "\nDo you want to continue? (0=no, 1=yes)";
+	chomp ($continue = <STDIN>);
+}
+
+sub populateNames {
+	@names = ();
+	for (my $i = 0; $i < $numNumbers; $i++) {
+		print "\nPlease enter a first name: ";
+		chomp($names[$i][$i] = <STDIN>);
+		print "\nPlease enter a last name: ";
+		chomp($names[$i][$i + 1] = <STDIN>);
+	}
+}
+	
+sub printNames {
+	my $size = @names;
+	for (my $i = 0; $i < $size; $i++) {
+		print "\n$names[$i][$i] $names[$i][$i + 1]\n";
+	}
+}
+
+sub validateInput {
+	my $MIN_NUMBERS = 1;
+	my $MAX_NUMBERS = 10;
+	my $MAX_VALIDATE = 5;
+	if ($counter <= $MAX_VALIDATE) {
+		$counter++;
+		if ($numNumbers < $MIN_NUMBERS || $numNumbers > $MAX_NUMBERS) {
+			print "\nYou must enter a number between 1 and 10. Try again\n";
+			sleep 1;
+			setNumNumbers();
+		}
+	} else {
+		die "\n\n\tToo many attempts, goodbye.";
+	}
+}

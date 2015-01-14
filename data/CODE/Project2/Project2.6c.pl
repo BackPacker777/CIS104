@@ -1,0 +1,95 @@
+## Assignment: Project 2.6c
+## Author: Howard Bates (hbates@northmen.org)
+## Version: 09.30.2013.01
+## Purpose: Demonstrate Chapter 4 Exercise 6 (Barking Lot)
+
+use 5.14.1;
+use warnings;
+
+my ($continueInt, $custID, $dogAge, $dogWeight, $totalBill);
+my ($dogName, $dogBreed);
+
+sub main {
+     use constant YES => 1;
+     setContinueInt();
+     system("cls");
+     if ($continueInt == YES) {
+          setCustID();
+          setDogName();
+          setDogBreed();
+          setDogAge();
+          setDogWeight();
+          calculateTotalBill();
+          printTotalBill();
+          main();
+     }
+     printGoodbye();
+}
+
+main();
+
+sub setContinueInt {
+     if (!(defined $continueInt)) {
+          $continueInt = 1;
+     } else {
+          print "\n\nDo you want to continue (0=no, 1=yes)? ";
+          chomp ($continueInt = <STDIN>);
+     }
+}
+
+sub setCustID {
+     print "\n\nPlease enter customer ID: ";
+     chomp ($custID = <STDIN>);
+}
+
+sub setDogName {
+     print "\n\nPlease enter dog's name: ";
+     chomp ($dogName = <STDIN>);
+}
+
+sub setDogBreed {
+     print "\n\nPlease enter dog's breed: ";
+     chomp ($dogBreed = <STDIN>);
+}
+
+sub setDogAge {
+     print "\n\nplease enter dog's age: ";
+     chomp ($dogAge = <STDIN>);
+}
+
+sub setDogWeight {
+     print "\n\nplease enter dog's weight: ";
+     chomp ($dogWeight = <STDIN>);
+}
+
+sub calculateTotalBill {
+     use constant SMALL_DOG_FEE => 55;
+     use constant MEDIUM_DOG_FEE => 75;
+     use constant LARGE_DOG_FEE => 105;
+     use constant JUMBO_DOG_FEE => 125;
+     use constant SMALL_DOG_WEIGHT => 15;
+     use constant MEDIUM_DOG_WEIGHT => 30;
+     use constant LARGE_DOG_WEIGHT => 80;
+     if ($dogWeight > 0 && $dogWeight < SMALL_DOG_WEIGHT) {
+          $totalBill = SMALL_DOG_FEE;
+     } elsif ($dogWeight < MEDIUM_DOG_WEIGHT) {
+          $totalBill = MEDIUM_DOG_FEE;
+     } elsif ($dogWeight < LARGE_DOG_WEIGHT) {
+          $totalBill = LARGE_DOG_FEE;
+     } else {
+          $totalBill = JUMBO_DOG_FEE;
+     }
+}
+
+sub printTotalBill {
+     use constant LARGE_BILL => 100;
+     system("cls");
+     if ($totalBill > LARGE_BILL) {
+          print "\n\n\t\tYour bill: \$$totalBill\n\n";
+     }
+}
+
+sub printGoodbye {
+     system("cls");
+     print "\n\n\t\t\tGoodbye.\n\n";
+}
