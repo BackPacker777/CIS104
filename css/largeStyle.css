@@ -108,16 +108,34 @@ td {
 }
 
 #rightMast {
-	width: 60%;
+	width: 500px;
 	float: right;
 	padding-right: 5px;
+	margin: 0 auto;
 	text-align: right;
 	color: white;
-	/*text-shadow: 2px 2px 2px #BDBDBD;*/
 }
 
 #rightMast a {
 	color: white;
+	-webkit-transition: all 0.3s ease-in; /*Safari & Chrome*/
+	transition: all 0.3s ease-in;
+	-moz-transition: all 0.3s ease-in; /* Firefox 4 */
+	-o-transition: all 0.3s ease-in; /* Opera */
+	text-decoration:none;
+}
+
+#rightMast a:hover,
+#rightMast a:focus
+#rightMast a:active {
+    -webkit-stroke-width: 5.3px;
+    -webkit-stroke-color: #000000;
+    -webkit-fill-color: #FFFFFF;
+    text-shadow: 1px 0px 20px #0592c2;
+    -webkit-transition: width 0.3s; /*Safari & Chrome*/
+    transition: width 0.3s;
+    -moz-transition: width 0.3s; /* Firefox 4 */
+    -o-transition: width 0.3s; /* Opera */
 }
 
 #rightMast a:visited {
