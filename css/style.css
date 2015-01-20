@@ -144,64 +144,55 @@ td {
 }
 
 #leftTitle {
-	width: 30%;
-	height: 85px;
+	width: 25%;
+	height: 100px;
 	float: left;
 	padding-left: 5px;
-	padding-top: 15px;
+	/* padding-top: 15px; */
+}
+
+#leftTitle h1 {
+	position: relative;
+	top: 30%;
+	transform: translateY(-50%);
+}
+
+#leftTitle p {
+	position: relative;
+	top: 30%;
+	transform: translateY(-50%);
 }
 
 #rightTitle {
-	width: 50%;
+	padding: 25px 10px 0px 0px;
+	width: 70%;
 	float: right;
-	height: 85px;
-	padding-top: 15px;
+	height: 75px;
 	z-index: 999;
 }
 
 #mainContent {
 	position: relative;
-	width: 1008px;
-	padding-left: 5px;
-	height: 170px;
+	width: 980px;
+	margin: 10px 0px 0px 10px;
+	height: 150px;
 	font-size: 18px;
 	text-align: justify;
 	z-index: 500;
 }
 
-#logo {
+#whiteLogo {
 	top: 0px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	float: left;
+	padding-right: 15px;
 }
 
 #webDevLogo {
-	display: block;
-	bottom: 0px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
-}
-
-#mainLeft {
-	position: relative;
-	width: 700px;
-	height: 160px;
-	font-size: 15px;
-	padding-top: 10px;
-	float: left;
-	z-index: 5;
-}
-
-#mainRight {
-	padding-top: 8px;
-	width: 250px;
-	height: 160px;
 	float: right;
-	margin-left: 10px;
-	margin-right: 15px;
-	z-index: 5;
+	margin-right: 30px;
 }
 
 #ajaxDisplay {
