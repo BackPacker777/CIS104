@@ -11,7 +11,7 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acro
 body {
 	line-height: 1;
 	font-family: monospace;
-	/*overflow-y:scroll;*/
+	overflow-x: hidden;
 }
 
 ol, ul {
@@ -85,30 +85,22 @@ td {
 #mastHead {
 	background-color: #ec9707;
 	top: 100px;
-     height: 30px;
-     width: 1008px;
+	height: 30px;
+	width: 1008px;
 	color: white;
 	line-height: 30px;
-}
-
-#titleBox {
-	background-color: #0592c2;
-	top: 100px;
-     height: 100px;
-     width: 1008px;
-	color: white;
-	line-height: 30px;
-	z-index: 999;
 }
 
 #leftMast {
-	width: 300px;
+	width: 30%;
+	height: 30px;
 	float: left;
-	margin-left: 5px;
+	padding-left: 5px;
 }
 
 #rightMast {
 	width: 500px;
+	height: 30px;
 	float: right;
 	padding-right: 5px;
 	margin: 0 auto;
@@ -128,42 +120,50 @@ td {
 #rightMast a:hover,
 #rightMast a:focus
 #rightMast a:active {
-    -webkit-stroke-width: 5.3px;
-    -webkit-stroke-color: #000000;
-    -webkit-fill-color: #FFFFFF;
-    text-shadow: 1px 0px 20px #0592c2;
-    -webkit-transition: width 0.3s; /*Safari & Chrome*/
-    transition: width 0.3s;
-    -moz-transition: width 0.3s; /* Firefox 4 */
-    -o-transition: width 0.3s; /* Opera */
+	-webkit-stroke-width: 5.3px;
+	-webkit-stroke-color: #000000;
+	-webkit-fill-color: #FFFFFF;
+	text-shadow: 1px 0px 20px #0592c2;
+	-webkit-transition: width 0.3s; /*Safari & Chrome*/
+	transition: width 0.3s;
+	-moz-transition: width 0.3s; /* Firefox 4 */
+	-o-transition: width 0.3s; /* Opera */
 }
 
 #rightMast a:visited {
 	color: white;
 }
 
+#titleBox {
+	background-color: #0592c2;
+	height: 100px;
+	width: 1008px;
+	color: white;
+	line-height: 30px;
+	z-index: 999;
+}
+
 #leftTitle {
-	width: 340px;
+	width: 30%;
+	height: 85px;
 	float: left;
-	margin-top: 5px;
-	margin-left: 5px;
+	padding-left: 5px;
 	padding-top: 15px;
 }
 
 #rightTitle {
-	width: 600px;
+	width: 50%;
 	float: right;
-	height: 50px;
-	margin-top: 25px;
+	height: 85px;
+	padding-top: 15px;
 	z-index: 999;
 }
 
 #mainContent {
 	position: relative;
-	width: 1000px;
-     margin-left: 5px;
-	height: 160px;
-	/*opacity: 0.3;*/
+	width: 1008px;
+	padding-left: 5px;
+	height: 170px;
 	font-size: 18px;
 	text-align: justify;
 	z-index: 500;
@@ -186,9 +186,10 @@ td {
 
 #mainLeft {
 	position: relative;
-	width: 740px;
+	width: 700px;
 	height: 160px;
-	margin-top: 10px;
+	font-size: 15px;
+	padding-top: 10px;
 	float: left;
 	z-index: 5;
 }
@@ -199,15 +200,17 @@ td {
 	height: 160px;
 	float: right;
 	margin-left: 10px;
+	margin-right: 15px;
 	z-index: 5;
 }
 
 #ajaxDisplay {
 	position: absolute;
 	top:  300px;
-	width: 1000px;
-	height: 330px;
-     margin-left: 5px;
+	width: 1008px;
+	height: 320px;
+	margin-left: 5px;
+	margin-top: 10px;
 	color: black;
 	overflow-y: scroll;
 	z-index: 400;
@@ -215,7 +218,7 @@ td {
 
 #footer {
 	height: 25px;
-	width: 980px;
+	width: 100%;
 	position: absolute;
 	bottom: 0px;
 	background-color: #DDDDDD;

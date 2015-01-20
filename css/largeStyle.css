@@ -85,30 +85,22 @@ td {
 #mastHead {
 	background-color: #ec9707;
 	top: 100px;
-     height: 30px;
-     width: 100%;
+	height: 30px;
+	width: 100%;
 	color: white;
 	line-height: 30px;
-}
-
-#titleBox {
-	background-color: #0592c2;
-	top: 100px;
-     height: 100px;
-     width: 100%;
-	color: white;
-	line-height: 30px;
-	z-index: 999;
 }
 
 #leftMast {
 	width: 30%;
+	height: 30px;
 	float: left;
-	margin-left: 5px;
+	padding-left: 5px;
 }
 
 #rightMast {
 	width: 500px;
+	height: 30px;
 	float: right;
 	padding-right: 5px;
 	margin: 0 auto;
@@ -128,24 +120,33 @@ td {
 #rightMast a:hover,
 #rightMast a:focus
 #rightMast a:active {
-    -webkit-stroke-width: 5.3px;
-    -webkit-stroke-color: #000000;
-    -webkit-fill-color: #FFFFFF;
-    text-shadow: 1px 0px 20px #0592c2;
-    -webkit-transition: width 0.3s; /*Safari & Chrome*/
-    transition: width 0.3s;
-    -moz-transition: width 0.3s; /* Firefox 4 */
-    -o-transition: width 0.3s; /* Opera */
+	-webkit-stroke-width: 5.3px;
+	-webkit-stroke-color: #000000;
+	-webkit-fill-color: #FFFFFF;
+	text-shadow: 1px 0px 20px #0592c2;
+	-webkit-transition: width 0.3s; /*Safari & Chrome*/
+	transition: width 0.3s;
+	-moz-transition: width 0.3s; /* Firefox 4 */
+	-o-transition: width 0.3s; /* Opera */
 }
 
 #rightMast a:visited {
 	color: white;
 }
 
+#titleBox {
+	background-color: #0592c2;
+	height: 100px;
+	width: 100%;
+	color: white;
+	line-height: 30px;
+	z-index: 999;
+}
+
 #leftTitle {
 	width: 30%;
+	height: 85px;
 	float: left;
-	margin-top: 5px;
 	padding-left: 5px;
 	padding-top: 15px;
 }
@@ -153,17 +154,16 @@ td {
 #rightTitle {
 	width: 50%;
 	float: right;
-	height: 50px;
-	margin-top: 25px;
+	height: 85px;
+	padding-top: 15px;
 	z-index: 999;
 }
 
 #mainContent {
 	position: relative;
 	width: 100%;
-     padding-left: 5px;
+	padding-left: 5px;
 	height: 160px;
-	/*opacity: 0.3;*/
 	font-size: 18px;
 	text-align: justify;
 	z-index: 500;
@@ -188,6 +188,7 @@ td {
 	position: relative;
 	width: 60%;
 	height: 160px;
+	font-size: 15px;
 	padding-top: 10px;
 	float: left;
 	z-index: 5;
@@ -208,7 +209,7 @@ td {
 	top:  300px;
 	width: 100%;
 	height: 54%;
-     margin-left: 5px;
+	margin-left: 5px;
 	color: black;
 	overflow-y: scroll;
 	z-index: 400;
