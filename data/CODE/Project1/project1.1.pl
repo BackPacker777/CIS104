@@ -30,7 +30,7 @@ sub setFirstName {
 }
 
 sub determineAge {
-    use constant CURRENTYEAR => 2014;
+    use constant CURRENTYEAR => 2015;
     my $year;
     print "\n\nWhat year were you born? ";
     chomp ($year = <STDIN>);
