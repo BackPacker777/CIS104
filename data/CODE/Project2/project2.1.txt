@@ -10,8 +10,8 @@ my ($lastName, $firstName);
 my ($year, $age, $counter);
 
 sub main {
-    $counter = 0;
     system("cls");
+    setCounter();
     setLastName();
     setFirstName();
     determineAge();
@@ -19,6 +19,24 @@ sub main {
 }
 
 main();
+
+sub setCounter {
+    if (!(defined $counter)) {
+        $counter = 0;
+    } else {
+        $counter = $counter + 1; ## or $counter++
+    }
+    print "\n\t\t\tCOUNTER: $counter\n";
+}
+
+sub setCounterBetter {
+    if (defined $counter) {
+        $counter++;
+    } else {
+        $counter = 0;
+    }
+    print "\n\t\t\tCOUNTER: $counter\n";
+}
 
 sub setLastName {
     print "\n\nWhat is your last name? ";
@@ -31,8 +49,7 @@ sub setFirstName {
 }
 
 sub determineAge {
-    use constant CURRENTYEAR => 2012;
-    my $year;
+    use constant CURRENTYEAR => 2015;
     print "\n\nWhat year were you born? ";
     chomp ($year = <STDIN>);
     validateInput();
@@ -46,20 +63,19 @@ sub printResults {
     print "\n\nHello " . $firstName . " " . $lastName . ". You are " . $age . " years old.\n";
     if ($age >= OLDAGE) {
         print "\nYou are VERY old!\n";
-    } elsif ($age < YOUNGAGE) {
+    } else {
         print "\nYou are VERY young!\n";
     }
 }
 
 sub validateInput {
     use constant MAXRECURSION => 5;
-    use constant MAXYEAR => 2007;
+    use constant MAXYEAR => 2015;
     use constant MINYEAR => 1900;
     if ($counter <= MAXRECURSION) {
         if ($year < MINYEAR || $year > MAXYEAR) {
             system("cls");
-            print "\n\nSORRY - INVALID YEAR SPECIFIED, TRY AGAIN.\n";
-            $counter = $counter + 1;
+            setCounter();
             determineAge();
         }
     } else {

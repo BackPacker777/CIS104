@@ -38,8 +38,12 @@ sub setCounter {
 }
 
 sub setContinueInt {
-     print "Do you want to continue (0=no, 1=yes)? ";
-     chomp ($continueInt = <STDIN>);
+     if (!(defined $continueInt)) {
+          $continueInt = 1;
+     } else {
+          print "\n\nDo you want to continue (0=no, 1=yes)? ";
+          chomp ($continueInt = <STDIN>);
+     }
 }
 
 sub setUserInput {
